@@ -12,7 +12,7 @@ let bird = {
     b: 153
   },
   birdImage: ""
-}
+};
 
 let block = {
   x: 20,
@@ -52,8 +52,7 @@ let blockThree = {
     r: 0,
     g: 255,
     b: 0
-  },
-  blockImage: ""
+  },   blockImage: ""
 }
 
 
@@ -67,8 +66,7 @@ let blockFour = {
     r: 0,
     g: 255,
     b: 0
-  },
-  blockImage: ""
+  },   blockImage: ""
 }
 
 let blockFive = {
@@ -81,8 +79,7 @@ let blockFive = {
     r: 0,
     g: 255,
     b: 0
-  },
-  blockImage: ""
+  },   blockImage: ""
 }
 
 let blockSix = {
@@ -95,8 +92,7 @@ let blockSix = {
     r: 0,
     g: 255,
     b: 0
-  },
-  blockImage: ""
+  },   blockImage: ""
 }
 
 let blockSeven = {
@@ -109,8 +105,7 @@ let blockSeven = {
     r: 0,
     g: 255,
     b: 0
-  },
-  blockImage: ""
+  },   blockImage: ""
 }
 
 
@@ -124,8 +119,7 @@ let blockEight = {
     r: 0,
     g: 255,
     b: 0
-  },
-  blockImage: ""
+  },   blockImage: ""
 }
 let gameStartButton = {
   x: 150,
@@ -191,13 +185,11 @@ function setup() {
   gameResetButton.buttonImage.resize(gameResetButton.buttonWidth, gameResetButton.buttonHeight);
   hitSound = loadSound('assets/sounds/hitSound.mp3');
   bgSound = loadSound('assets/sounds/bgSound.mp3');
+
+
 }
 
 function draw() {
-
-
-
-
 
 
   if (gameState === "START") {
@@ -209,11 +201,11 @@ function draw() {
     background(0);
 
     image(bgImage, bgImageX, 0);
-    bgImageX = bgImageX - 1;
-    if ((-bgImageX) > bgImage.width / 2) {
-      bgImageX = 0;
+    bgImageX = bgImageX-1;
+    if((-bgImageX)>bgImage.width/2){
+      bgImageX =0;
     }
-    //  console.log(bgImageX);
+  //  console.log(bgImageX);
 
     /***display objects**/
     displayBird();
@@ -248,48 +240,52 @@ function draw() {
       }
     }
   } //play
-  else if (gameState === "COLLIDED") {
+
+  else if (gameState === "COLLIDED"){
     background(0);
     image(bgImage, bgImageX, 0);
     displayBird();
     displayBlock();
     displayLives();
 
-    if (hitSound.isPlaying() === false) {
-      bird.x = -30;
+    if(hitSound.isPlaying() ===false){
+      bird.x =-50;
       gameState = "PLAY";
     }
 
-  } else if (gameState === "GAMEOVER") {
+  }
+
+  else if (gameState ==="GAMEOVER"){
     background(0, 0, 0);
     displayBird();
     displayBlock();
     console.log(hitSound.isPlaying());
 
-    if (hitSound.isPlaying() === false) {
+    if(hitSound.isPlaying() ===false){
       gameState = "RESET";
-      if (bgSound.isPlaying() === false) {
+      if (bgSound.isPlaying()=== false) {
         bgSound.play()
       }
 
     }
-  } else if (gameState === "RESET") {
+  }
+  else if (gameState === "RESET") {
     background(0, 0, 0);
     image(gameResetButton.buttonImage, gameResetButton.x, gameResetButton.y);
 
   }
 }
 
-function displayLives() {
+function displayLives(){
   let livesText = `Lives Remaining: ${livesRemaining}`;
   textSize(20);
   fill(255);
   text(livesText, 10, 30);
 }
 
-function reset() {
+function reset(){
 
-  livesRemaining = 5;
+  livesRemaining =5;
 
   //reset the blocks
   bird = {
@@ -344,8 +340,7 @@ function reset() {
       r: 0,
       g: 255,
       b: 0
-    },
-    blockImage: ""
+    },   blockImage: ""
   }
 
 
@@ -359,8 +354,7 @@ function reset() {
       r: 0,
       g: 255,
       b: 0
-    },
-    blockImage: ""
+    },   blockImage: ""
   }
 
   blockFive = {
@@ -373,8 +367,7 @@ function reset() {
       r: 0,
       g: 255,
       b: 0
-    },
-    blockImage: ""
+    },   blockImage: ""
   }
 
   blockSix = {
@@ -387,8 +380,7 @@ function reset() {
       r: 0,
       g: 255,
       b: 0
-    },
-    blockImage: ""
+    },   blockImage: ""
   }
 
   blockSeven = {
@@ -401,8 +393,7 @@ function reset() {
       r: 0,
       g: 255,
       b: 0
-    },
-    blockImage: ""
+    },   blockImage: ""
   }
 
 
@@ -416,8 +407,7 @@ function reset() {
       r: 0,
       g: 255,
       b: 0
-    },
-    blockImage: ""
+    },   blockImage: ""
   }
 
   block.blockImage = loadImage("assets/images/block.png");
@@ -436,15 +426,15 @@ function mousePressed() {
     if (mouseX > gameStartButton.x && mouseX < gameStartButton.x + gameStartButton.buttonWidth) {
       if (mouseY > gameStartButton.y && mouseY < gameStartButton.y + gameStartButton.buttonHeight) {
         //  console.log(" start game");
-        if (bgSound.isPlaying() === false) {
-          bgSound.play()
+        if (bgSound.isPlaying()=== false) {
+          bgSound.play ()
         }
         gameState = "PLAY";
 
       }
     }
 
-  } //start
+  }//start
 
   if (gameState === "RESET") {
     if (mouseX > gameResetButton.x && mouseX < gameResetButton.x + gameResetButton.buttonWidth) {
@@ -456,7 +446,7 @@ function mousePressed() {
       }
     }
 
-  } //start
+  }//start
 }
 
 
@@ -611,7 +601,7 @@ function checkBirdCollision() {
 
   /** CHECK 1 and 2 */
 
-  let collision = false;
+  let collision =false;
   let bird_X_ForCollison = bird.x - bird.birdWidth / 2;
   let bird_Y_ForCollision = bird.y + bird.birdHeight / 2;
   //check x collison of BOTH 1 & 2
@@ -621,7 +611,7 @@ function checkBirdCollision() {
     //check y collision with 1
     if (bird_Y_ForCollision > block.y) {
       console.log("collision 1");
-      collision = true;
+      collision =true;
 
 
     }
@@ -629,7 +619,7 @@ function checkBirdCollision() {
     else if (bird_Y_ForCollision < (blockTwo.blockHeight)) {
 
       console.log("collision 2");
-      collision = true;
+      collision =true;
 
 
     }
@@ -646,14 +636,14 @@ function checkBirdCollision() {
     //check y collision with 3
     if (bird_Y_ForCollision > blockThree.y) {
       console.log("collision 3");
-      collision = true;
+      collision =true;
 
     }
     //check y collision with 4
     else if (bird_Y_ForCollision < (blockFour.blockHeight)) {
 
       console.log("collision 4");
-      collision = true;
+      collision =true;
 
 
     }
@@ -666,14 +656,14 @@ function checkBirdCollision() {
     //check y collision with 5
     if (bird_Y_ForCollision > blockFive.y) {
       console.log("collision 5");
-      collision = true;
+      collision =true;
 
     }
     //check y collision with 6
     else if (bird_Y_ForCollision < (blockSix.blockHeight)) {
 
       console.log("collision 6");
-      collision = true;
+      collision =true;
 
     }
   }
@@ -686,38 +676,38 @@ function checkBirdCollision() {
     //check y collision with 5
     if (bird_Y_ForCollision > blockSeven.y) {
       console.log("collision 7");
-      collision = true;
+      collision =true;
 
     }
     //check y collision with 6
     else if (bird_Y_ForCollision < (blockEight.blockHeight)) {
 
       console.log("collision 8");
-      collision = true;
+      collision =true;
 
 
     }
   }
 
 
-  if (collision === true) {
+ if(collision ===true){
 
-    livesRemaining = livesRemaining - 1;
+   livesRemaining = livesRemaining-1;
 
 
-    //game over
-    if (livesRemaining === 0) {
+//game over
+    if(livesRemaining ===0){
 
-      if (bgSound.isPlaying() === true) {
-        bgSound.stop()
-      }
+    if (bgSound.isPlaying()=== true) {
+      bgSound.stop()
+    }
 
 
       gameState = "GAMEOVER";
     }
-    //collided
-    else {
-      if (hitSound.isPlaying() === false) {
+ //collided
+    else{
+      if(hitSound.isPlaying() ===false){
         hitSound.play();
         gameState = "COLLIDED";
 
@@ -725,5 +715,4 @@ function checkBirdCollision() {
 
     }
   }
-}
 } //end collision
